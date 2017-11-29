@@ -4,16 +4,17 @@
 ## 2017-11-28 ##
 
 # Rscript WGCNA_KEGGenrichment.R <dir.module> <bg.size> <dir.outsidefile>
+argv <- commandArgs(T)
 
 workingdir <- "."
 setwd(workingdir)
 
-argv <- commandArgs(T)
+
 #fl.module should write the whole path, such as "~/winhome/inMP/time-series/GCN/WGCNA/WGCNA_pipeline/result/modules/merged_modes.dissTOM.JS.pearson.deepsplit=2.MEDissThres=0.10.txt"
 
-#path.module <- "H://inMP/time-series/GCN/WGCNA/WGCNA_pipeline/result/modules/merged_modes.dissTOM.HS.pearson.deepsplit=2.MEDissThres=0.10.txt"
-
-path.module <- argv[1]
+path.module <- "H://inMP/time-series/GCN/WGCNA/WGCNA_pipeline/result/modules/merged_modes.dissTOM.HS.pearson.deepsplit=2.MEDissThres=0.10.txt"
+outpath <- "H://inMP/time-series/GCN/WGCNA/WGCNA_pipeline/result/enrichment/KEGG_enrichment/KEGG.HS.txt"
+#path.module <- argv[1]
 
 #### read kegg pathways ####
 
@@ -24,7 +25,9 @@ my.loadpathway <- function(){
     for(i in 1: length(dir.pathway)){
          info.pathway <- read.table(paste("H://inMP/tools/kegg_pathway_geneget/result/", dir.pathway[i], sep = ""), quote = "", header = T, sep = "\t")
          list.pathway[[i]] <- info.pathway
-         names.pathway <- append(names.pathway, strsplit(dir.pathway[i], "_ |.txt", perl = T)[[1]][2])
+         names <- strsplit(dir.pathway[i], ".txt", perl = T)[[1]][1]
+         names <- strsplit(names, "_", perl = T)[[1]][2]
+         names.pathway <- append(names.pathway, names)
     }
     names(list.pathway) <- names.pathway
     return(list.pathway)
@@ -57,8 +60,8 @@ my.loadmodule <- function(path.module){
 list.pathway <- my.loadpathway()
 table.module <- my.loadmodule(path.module)
 modulename <- levels(table.module$Module)
-num.bg <- argv[2]
-#num.bg <- 35581
+#num.bg <- as.integer(argv[2])
+num.bg <- 35581
 
 num <- length(modulename)*length(list.pathway)
 
@@ -102,4 +105,4 @@ fdr <- p.adjust(result.detail[ , 7], method = 'fdr')
 result.detail <- data.frame(module = as.character(result.detail[ , 1]), pathway = as.character(result.detail[ , 2]), n = as.integer(result.detail[ , 3]), N = as.integer(result.detail[ , 4]), x = as.integer(result.detail[ , 5]), X = as.integer(result.detail[ , 6]), p.value = as.numeric(result.detail[ , 7]), fdr = fdr)
 colnames(result.detail) <- c('module', 'pathway', 'n', 'N', 'x', 'X', 'p.value', 'fdr')
 result.detail <- result.detail[order(result.detail[ , 8], decreasing =  F), ]
-write.table(result.detail, "./result/enrichment/KEGG_enrichment/test.txt", quote = F, row.names = F, col.names = T, sep = "\t" )
+write.table(result.detail, outpath, quote = F, row.names = F, col.names = T, sep = "\t" )

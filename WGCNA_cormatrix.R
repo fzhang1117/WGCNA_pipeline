@@ -27,7 +27,7 @@ pdf("./result/sft.pdf")
 
 # step 3: build co-expression Network
 net = blockwiseModules(
-    my.data,
+    my.data, corType = "bicor", deepSplit = 4,
     power = sft$powerEstimate,
     maxBlockSize = 1000,
     TOMType = "unsigned", minModuleSize = 30,
@@ -40,7 +40,7 @@ net = blockwiseModules(
 
 
 # step 4: visualize the moudle
-pdf("./result/module.pdf")
+pdf("./result/bicor_module_deep4.pdf")
     mergedColors = labels2colors(net$colors)
     plotDendroAndColors(net$dendrograms[[1]], mergedColors[net$blockGenes[[1]]], "Module colors", dendroLabels = F, hang = 0.03, addGuide = T, guideHang = 0.05)
 dev.off()

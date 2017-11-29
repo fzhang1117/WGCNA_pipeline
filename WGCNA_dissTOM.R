@@ -8,14 +8,13 @@
 library(WGCNA)
 load("./data/ave_expression.Rdata")
 
+list.index <- list(rownames(ave.JC), rownames(ave.HC))
+names(list.index) <- c('JI', 'HZ')
+
 my.dissTOM <- function(expression, filebase = "myWGCNA", method.cor = "pearson", type.net = 'unsigned', verbose = 5){
     # This function soft the softthreshold and calculate dissTOM from expression data
     # cor.method could be either 'pearson', 'bicor' and 'spearman'
-    # output list
-        # cor matrix
-        # TOM matrix
-        # network
-    
+        
     # This is the softhreshold select codes
     expression <- t(expression)
     powers <- c(c(1: 10), seq(from = 12, to = 100, by = 2))
@@ -54,18 +53,18 @@ my.dissTOM <- function(expression, filebase = "myWGCNA", method.cor = "pearson",
 #dissTOM.HC <- my.dissTOM(ave.HC, filebase = "HC.pcc", method.cor = "pearson", type.net = 'unsigned', verbose = 5)
 #dissTOM.HS <- my.dissTOM(ave.HS, filebase = "HS.pcc", method.cor = "pearson", type.net = 'unsigned', verbose = 5)
 
-#save('dissTOM.JC', 'dissTOM.JS', 'dissTOM.HC', 'dissTOM.HS', list = c('dissTOM.JC', 'dissTOM.JS', 'dissTOM.HC', 'dissTOM.HS'), file = "./data/dissTOM.pearson.Rdata")
+#save(dissTOM.JC, dissTOM.JS, dissTOM.HC, dissTOM.HS, list.index, list = c('dissTOM.JC', 'dissTOM.JS', 'dissTOM.HC', 'dissTOM.HS', 'list.index'), file = "./data/dissTOM.pearson.Rdata")
 
-dissTOM2.JC <- my.dissTOM(ave.JC, filebase = "JC.sp", method.cor = "spearman", type.net = 'unsigned', verbose = 5)
-dissTOM2.JS <- my.dissTOM(ave.JS, filebase = "JS.sp", method.cor = "spearman", type.net = 'unsigned', verbose = 5)
-dissTOM2.HC <- my.dissTOM(ave.HC, filebase = "HC.sp", method.cor = "spearman", type.net = 'unsigned', verbose = 5)
-dissTOM2.HS <- my.dissTOM(ave.HS, filebase = "HS.sp", method.cor = "spearman", type.net = 'unsigned', verbose = 5)
+#dissTOM2.JC <- my.dissTOM(ave.JC, filebase = "JC.sp", method.cor = "spearman", type.net = 'unsigned', verbose = 5)
+#dissTOM2.JS <- my.dissTOM(ave.JS, filebase = "JS.sp", method.cor = "spearman", type.net = 'unsigned', verbose = 5)
+#dissTOM2.HC <- my.dissTOM(ave.HC, filebase = "HC.sp", method.cor = "spearman", type.net = 'unsigned', verbose = 5)
+#dissTOM2.HS <- my.dissTOM(ave.HS, filebase = "HS.sp", method.cor = "spearman", type.net = 'unsigned', verbose = 5)
 
-save('dissTOM2.JC', 'dissTOM2.JS', 'dissTOM2.HC', 'dissTOM2.HS', list = c('dissTOM.JC', 'dissTOM.JS', 'dissTOM.HC', 'dissTOM.HS'), file = "./data/dissTOM.spearman.Rdata")
+#save(dissTOM2.JC, dissTOM2.JS, dissTOM2.HC, dissTOM2.HS, list.index, list = c('dissTOM2.JC', 'dissTOM2.JS', 'dissTOM2.HC', 'dissTOM2.HS', 'list.index'), file = "./data/dissTOM.spearman.Rdata")
 
 dissTOM3.JC <- my.dissTOM(ave.JC, filebase = "JC.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
 dissTOM3.JS <- my.dissTOM(ave.JS, filebase = "JS.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
 dissTOM3.HC <- my.dissTOM(ave.HC, filebase = "HC.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
 dissTOM3.HS <- my.dissTOM(ave.HS, filebase = "HS.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
 
-save('dissTOM3.JC', 'dissTOM3.JS', 'dissTOM3.HC', 'dissTOM3.HS', list = c('dissTOM.JC', 'dissTOM.JS', 'dissTOM.HC', 'dissTOM.HS'), file = "./data/dissTOM.bicor.Rdata")
+save(dissTOM3.JC, dissTOM3.JS, dissTOM3.HC, dissTOM3.HS, list.index, list = c('dissTOM3.JC', 'dissTOM3.JS', 'dissTOM3.HC', 'dissTOM3.HS', 'list.index'), file = "./data/dissTOM.bicor.Rdata")

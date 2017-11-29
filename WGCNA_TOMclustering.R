@@ -50,7 +50,12 @@ for(i in 1: length(fl.diss)){
 	# Call an automatic merging function
 	merge = mergeCloseModules(t(get(fl.expression[i])), dynamicColors, cutHeight = argv[5], verbose = 3)
 	mergedColors = merge$colors
-
+	
+	# merged module eigengenes
+	MEList.new <- moduleEigengenes(t(get(fl.expression[i])), colors = mergedColors, nPC = 1, excludeGrey = T)
+	MEs.new <- MEList.new$eigengenes
+	write.table(MEs.new, paste("./result/MEs.", fl.diss[i], ".", argv[2], ".", "deepsplit=", argv[4], "MEDissThres=", argv[5], ".txt", sep = ""), quote = F, sep = "\t", col.names = T)
+	
 	# new merged modules
 	mergeMEs = merge$newMEs
 	if(length(mergedColors) == 3707){
