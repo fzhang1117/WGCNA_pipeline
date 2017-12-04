@@ -48,10 +48,10 @@ my.dissTOM <- function(expression, filebase = "myWGCNA", method.cor = "pearson",
     return(dissTOM)    
 }
 
-#dissTOM.JC <- my.dissTOM(ave.JC, filebase = "JC.pcc", method.cor = "pearson", type.net = 'unsigned', verbose = 5)
-#dissTOM.JS <- my.dissTOM(ave.JS, filebase = "JS.pcc", method.cor = "pearson", type.net = 'unsigned', verbose = 5)
-#dissTOM.HC <- my.dissTOM(ave.HC, filebase = "HC.pcc", method.cor = "pearson", type.net = 'unsigned', verbose = 5)
-#dissTOM.HS <- my.dissTOM(ave.HS, filebase = "HS.pcc", method.cor = "pearson", type.net = 'unsigned', verbose = 5)
+dissTOM.JC <- my.dissTOM(ave.JC, filebase = "JC.pcc", method.cor = "pearson", type.net = 'signed', verbose = 5)
+dissTOM.JS <- my.dissTOM(ave.JS, filebase = "JS.pcc", method.cor = "pearson", type.net = 'signed', verbose = 5)
+dissTOM.HC <- my.dissTOM(ave.HC, filebase = "HC.pcc", method.cor = "pearson", type.net = 'signed', verbose = 5)
+dissTOM.HS <- my.dissTOM(ave.HS, filebase = "HS.pcc", method.cor = "pearson", type.net = 'signed', verbose = 5)
 
 #save(dissTOM.JC, dissTOM.JS, dissTOM.HC, dissTOM.HS, list.index, list = c('dissTOM.JC', 'dissTOM.JS', 'dissTOM.HC', 'dissTOM.HS', 'list.index'), file = "./data/dissTOM.pearson.Rdata")
 
@@ -62,9 +62,9 @@ my.dissTOM <- function(expression, filebase = "myWGCNA", method.cor = "pearson",
 
 #save(dissTOM2.JC, dissTOM2.JS, dissTOM2.HC, dissTOM2.HS, list.index, list = c('dissTOM2.JC', 'dissTOM2.JS', 'dissTOM2.HC', 'dissTOM2.HS', 'list.index'), file = "./data/dissTOM.spearman.Rdata")
 
-dissTOM3.JC <- my.dissTOM(ave.JC, filebase = "JC.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
-dissTOM3.JS <- my.dissTOM(ave.JS, filebase = "JS.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
-dissTOM3.HC <- my.dissTOM(ave.HC, filebase = "HC.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
-dissTOM3.HS <- my.dissTOM(ave.HS, filebase = "HS.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
+#dissTOM3.JC <- my.dissTOM(ave.JC, filebase = "JC.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
+#dissTOM3.JS <- my.dissTOM(ave.JS, filebase = "JS.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
+#dissTOM3.HC <- my.dissTOM(ave.HC, filebase = "HC.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
+#dissTOM3.HS <- my.dissTOM(ave.HS, filebase = "HS.bicor", method.cor = "bicor", type.net = 'unsigned', verbose = 5)
 
-save(dissTOM3.JC, dissTOM3.JS, dissTOM3.HC, dissTOM3.HS, list.index, list = c('dissTOM3.JC', 'dissTOM3.JS', 'dissTOM3.HC', 'dissTOM3.HS', 'list.index'), file = "./data/dissTOM.bicor.Rdata")
+save(dissTOM.JC, dissTOM.JS, dissTOM.HC, dissTOM.HS, list.index, list = c('dissTOM.JC', 'dissTOM.JS', 'dissTOM.HC', 'dissTOM.HS', 'list.index'), file = "./data/dissTOM.pearson.signed.Rdata")

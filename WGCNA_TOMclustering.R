@@ -9,6 +9,7 @@
 argv <- commandArgs(T)
 
 library(WGCNA)
+allowWGCNAThreads(16)
 
 ## load the dissTOM matrix
 load(argv[1])
@@ -52,9 +53,14 @@ for(i in 1: length(fl.diss)){
 	mergedColors = merge$colors
 	
 	# merged module eigengenes
-	MEList.new <- moduleEigengenes(t(get(fl.expression[i])), colors = mergedColors, nPC = 1, excludeGrey = T)
+	MEList.new <- moduleEigengenes(t(get(fl.expression[i])), colors = mergedColors, nPC = 1, excludeGrey = F)
 	MEs.new <- MEList.new$eigengenes
+	Var.exp <- data.frame(modulename = colnames(MEList.new$eigengenes), varExp = t(MEList.new$varExplained))
+	AEs.new <- MEList.new$averageExpr
 	write.table(MEs.new, paste("./result/MEs.", fl.diss[i], ".", argv[2], ".", "deepsplit=", argv[4], "MEDissThres=", argv[5], ".txt", sep = ""), quote = F, sep = "\t", col.names = T)
+	write.table(Var.exp, paste("./result/Varexp.", fl.diss[i], ".", argv[2], ".", "deepsplit=", argv[4], "MEDissThres=", argv[5], ".txt", sep = ""), quote = F, sep = "\t", col.names = T)
+	write.table(AEs.new, paste("./result/AEs.", fl.diss[i], ".", argv[2], ".", "deepsplit=", argv[4], "MEDissThres=", argv[5], ".txt", sep = ""), quote = F, sep = "\t", col.names = T)
+	
 	
 	# new merged modules
 	mergeMEs = merge$newMEs

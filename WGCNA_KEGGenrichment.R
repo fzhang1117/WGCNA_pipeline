@@ -12,8 +12,8 @@ setwd(workingdir)
 
 #fl.module should write the whole path, such as "~/winhome/inMP/time-series/GCN/WGCNA/WGCNA_pipeline/result/modules/merged_modes.dissTOM.JS.pearson.deepsplit=2.MEDissThres=0.10.txt"
 
-path.module <- "H://inMP/time-series/GCN/WGCNA/WGCNA_pipeline/result/modules/merged_modes.dissTOM.HS.pearson.deepsplit=2.MEDissThres=0.10.txt"
-outpath <- "H://inMP/time-series/GCN/WGCNA/WGCNA_pipeline/result/enrichment/KEGG_enrichment/KEGG.HS.txt"
+path.module <- "H://inMP/time-series/GCN/WGCNA/WGCNA_pipeline/result/modules/merged_modes.dissTOM.HC.pearson.deepsplit=2.MEDissThres=0.10.txt"
+outpath <- "H://inMP/time-series/GCN/WGCNA/WGCNA_pipeline/result/enrichment/KEGG_enrichment/KEGG.HC.txt"
 #path.module <- argv[1]
 
 #### read kegg pathways ####

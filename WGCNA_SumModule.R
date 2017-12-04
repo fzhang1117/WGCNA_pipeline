@@ -3,7 +3,7 @@
 ## Zhang Fei ##
 ## 2017-11-26 ##
 
-net.list <- dir("./result/modules/", pattern = ".txt")
+net.list <- dir("./result/modules/", pattern = "merged_modes.dissTOM")
 
 for(i in 1: length(net.list)){
     module <- read.table(paste("./result/modules/", net.list[i], sep = ""), header = F, sep = "\t")
