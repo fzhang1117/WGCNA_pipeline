@@ -72,11 +72,12 @@ for(i in 1: length(fl.diss)){
 	#mergeColors.output = data.frame(GeneName = list.index)
 	write.table(mergedColors.out, paste("./result/merged_modes.", fl.diss[i], ".", argv[2], ".", "deepsplit=", argv[4], ".", "MEDissThres=", argv[5], ".txt", sep = ""), quote = F, sep = "\t", col.names = F)
 	pdf(paste("./result/", fl.diss[i], ".", argv[2], ".", "deepsplit=", argv[4], ".MEDissThres=", argv[5],".pdf", sep = ""), height = 9, width = 12)
-		#plot(geneTree, xlab = "", sub = "", main = "Gene clustering on TOM-based dissimilarity", labels = FALSE, hang = 0.04)
+		plot(geneTree, xlab = "", sub = "", main = "Gene clustering on TOM-based dissimilarity", labels = FALSE, hang = 0.04)
 		plotDendroAndColors(geneTree, dynamicColors, "Dynamic Tree Cut", dendroLabels = F, hang = 0.03, addGuide = T, guideHang = 0.05, main = "Gene dendrogram and module colors")
 		plot(METree, main = "Clustering of module eigengenes (PC1))", xlab = "", sub = "")
 		abline(h = MEDissThres, col = 'red')
-		plotDendroAndColors(geneTree, cbind(dynamicColors, mergedColors), c("Dynamic Tree Cut", "Merged dynamic"), dendroLables = F, hang = 0.03, addGuide = T, guideHang = 0.05)
+		plotDendroAndColors(geneTree, cbind(dynamicColors, mergedColors), c("Dynamic Tree Cut", "Merged dynamic"), dendroLabels = F, hang = 0.03, addGuide = T, guideHang = 0.05)
+		plotDendroAndColors(geneTree, mergedColors, "Modules", dendroLabels = F, hang = 0.03, addGuide = T, guideHang = 0.05)
 	dev.off()
 }
 

@@ -21,7 +21,7 @@ library(reshape2)
 
 
 ### PM_part ###
-GC <- read.table("./data/GC.new.txt", header = T, row.names = 1, quote = "", sep = "\t")
+GC <- read.table("./data/GC.new.txt", header = T, quote = "", sep = "\t", check.names = F)
 GC.melt <- melt(GC, id.vars = "Type", na.rm = T)
 GC.ave <- dcast(GC.melt, Type ~ variable, mean)
 
@@ -37,7 +37,13 @@ SM_pos.ave <- dcast(SM_pos.melt, Type ~ variable, mean)
 
 ### LP_Part ###
 
-LP_neg.ave <- read.table("./data/LP.neg.txt", header = T, quote = "", sep = "\t")
-LP_pos.ave <- read.table("./data/LP.pos.txt", header = T, quote = "", sep = "\t")
+LP_neg <- read.table("./data/LP.neg.txt", header = T, quote = "", sep = "\t")
+LP_neg.melt <- melt(LP_neg, id.vars = "Type", na.rm = T)
+LP_neg.ave <- dcast(LP_net.melt, Type ~ variable, mean)
 
-save(GC.ave, SM_neg.ave, SM_pos.ave, LP_neg.ave, LP_pos.ave, file = "./data/metabolic.Rdata")
+LP_neg <- read.table("./data/LP.neg.txt", header = T, quote = "", sep = "\t")
+LP_neg.melt <- melt(LP_neg, id.vars = "Type", na.rm = T)
+LP_neg.ave <- dcast(LP_net.melt, Type ~ variable, mean)
+
+
+save(GC.ave, SM_neg.ave, SM_pos.ave, LP_neg.ave, LP_pos.ave, GC, SM_neg, SM_pos, LP_neg, LP_pos, file = "./data/metabolic.Rdata")

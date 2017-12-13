@@ -125,7 +125,7 @@ ann_colors <- list(class = module_colors)
 #pheatmap(link.wide, cluster_rows = T, color = c('#0c8918', rep('#f0f0f4', 7), '#ff4c00'), cellwidth = 10, cellheight = 10, legend = F, gaps_row = c(10, 21, 31), 
 #         annotation_row = annotation_row, annotation_legend = F, annotation_colors = ann_colors, border_color = '#f0f0f4')
 
-pheatmap(link.wide, cluster_rows = T, cellwidth = 10, cellheight = 10, legend = T, gaps_row = c(10, 21, 31),
-         annotation_row = annotation_row, annotation_legend = F, annotation_colors = ann_colors, border_color = '#f0f0f4',
-         filename = "./result/cor_metabolites/PM_cor.pdf", height = 10, width = 16.18)
+pheatmap(t(link.wide), cluster_rows = T, cellwidth = 10, cellheight = 10, legend = T, gaps_row = c(10, 21, 31),
+         annotation_col = annotation_row, annotation_legend = F, annotation_colors = ann_colors, border_color = '#f0f0f4',
+         filename = "./result/cor_metabolites/PM_cor.pdf", height = 16, width = 12)
 
